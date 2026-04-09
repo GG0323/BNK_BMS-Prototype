@@ -40,7 +40,7 @@ public class MemberService {
 	public boolean deleteMember(String username) {
 		if(getMember(username) == null) return false;
 		
-		repo.deleteById(username);
+		repo.deleteByUsername(username);
 		return true;
 	}
 

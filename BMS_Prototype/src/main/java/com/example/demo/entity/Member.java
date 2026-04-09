@@ -2,9 +2,12 @@ package com.example.demo.entity;
 
 import com.example.demo.pojo.Role;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Builder;
@@ -16,7 +19,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name="Member")
 public class Member {
-	@Id
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@Column(unique = true, nullable = false)
 	private String username;
 	private String password;
 	private String name;

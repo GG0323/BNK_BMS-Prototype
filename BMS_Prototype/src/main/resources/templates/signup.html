@@ -8,12 +8,12 @@
 <body>
 <h1>Signup Page</h1><hr>
 <form>
-	<input type="text" name="username" placeholder="Username"><br>
-	<input type="password" name="password" placeholder="Password"><br>
-	<input type="text" name="name" placeholder="Name"><br>
+	<input type="text" name="username" placeholder="Username" required><br>
+	<input type="password" name="password" placeholder="Password" required><br>
+	<input type="text" name="name" placeholder="Name" required><br>
 	<select name="role">
-		<option value="ADMIN">관리자</option>
 		<option value="MEMBER">회원</option>
+		<option value="ADMIN">관리자</option>
 	</select>
 	<button type="button" onclick="signup()">Signup</button>
 </form>

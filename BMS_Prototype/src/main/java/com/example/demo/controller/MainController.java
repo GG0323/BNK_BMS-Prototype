@@ -40,7 +40,6 @@ public class MainController {
 	
 	@PostMapping("/member")
 	public @ResponseBody boolean member(RequestMemberDto dto) {
-		mservice.save(dto);
-		return true;
+		return mservice.save(dto);
 	}
 }

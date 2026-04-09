@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class RequestTransactionDetailsDto {
-	private Long sender;
-	private Long receiver;
+	private String sender;
+	private String receiver;
 	private Long balance;
 	private String act;
 	
