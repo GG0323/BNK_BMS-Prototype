@@ -28,13 +28,12 @@ public class Account {
 	private boolean state = true;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Member username;
+	private Member member;
 	
 	
 	@Builder
-	public Account(String username, String accountnum) {
-		this.username = new Member();
-		this.username.setUsername(username);
+	public Account(Member member, String accountnum) {
+		this.member = member;
 		this.accountnum = accountnum;
 	}
 }

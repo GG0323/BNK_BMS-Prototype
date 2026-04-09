@@ -20,9 +20,9 @@ public class MemberService {
 	private final BCryptPasswordEncoder pwEncoder;
 	
 	// 회원 가입 및 수정(성공하면 true, 실패하면 false)
-	public boolean save(RequestMemberDto dto) {
+	public Member save(RequestMemberDto dto) {
 		dto.setPassword(pwEncoder.encode(dto.getPassword()));
-		return repo.save(dto.dtoToEntity()) != null;
+		return repo.save(dto.dtoToEntity());
 	}
 	
 	// 회원 전체 조회(관리자)

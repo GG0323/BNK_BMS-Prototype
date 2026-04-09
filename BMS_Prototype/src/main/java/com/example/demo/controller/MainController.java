@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.RequestMemberDto;
+import com.example.demo.entity.Member;
+import com.example.demo.service.AccountService;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.NoticeService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,9 +19,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MainController {
 	private final MemberService mservice;
+	private final NoticeService nservice;
+	private final AccountService aservice;
 	
 	@GetMapping("/")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("notice", nservice.getNotice());
 		return"index";
 	}
 	
@@ -40,6 +46,8 @@ public class MainController {
 	
 	@PostMapping("/member")
 	public @ResponseBody boolean member(RequestMemberDto dto) {
-		return mservice.save(dto);
+		Member entity = mservice.save(dto);
+		if(entity == null) return false;
+		return aservice.save(entity);
 	}
 }
