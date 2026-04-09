@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.RequestMemberDto;
 import com.example.demo.dto.ResponseMemberDto;
 import com.example.demo.entity.Member;
+import com.example.demo.pojo.Role;
 import com.example.demo.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class MemberService {
 	
 	// 회원 전체 조회(관리자)
 	public List<ResponseMemberDto> getMember(){
-		return repo.findAll().stream().map(ResponseMemberDto::entityToDto).toList();
+		return repo.findAll().stream().map(ResponseMemberDto::entityToDto).filter(dto -> dto.getRole().equals(Role.MEMBER)).toList();
 	}
 	
 	// 회원 1명 조회(회원 본인)
