@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Member Page</h1><hr>
+<h2>[[${name}]]님 계좌 목록</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>계좌번호</th>
+			<th>잔액</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="ac : ${account}">
+			<td th:text="${ac.accountnum}"></td>
+			<td th:text="${ac.balance}"></td>
+		</tr>
+	</tbody>
+</table>
+
+</body>
+</html>

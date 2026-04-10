@@ -8,48 +8,8 @@
 <body>
 <h1>Member Page</h1><hr>
 <h2>[[${member.name}]]님 어서오세요</h2>
-
-<table>
-	<thead>
-		<tr>
-			<th>계좌번호</th>
-			<th>잔액</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="ac : ${account}">
-			<td th:text="${ac.accountnum}"></td>
-			<td th:text="${ac.balance}"></td>
-		</tr>
-	</tbody>
-</table>
-
-<h3>입금</h3>
-<form id='depo'>
-	<select name='receiver'>
-		<option th:each="ac : ${account}"
-		th:value="${ac.accountnum}"
-		th:text="${ac.accountnum}">
-		</option>
-	</select>
-	<input type="text" name="balance" placeholder="금액을 입력해주세요." required>
-	<input type="hidden" name="act" value="입금">
-	<button type="button" onclick="deposit()">입금</button>
-</form><hr>
-
-<h3>송금</h3>
-<form id="remit">
-	<select name='sender'>
-		<option th:each="ac : ${account}"
-		th:value="${ac.accountnum}"
-		th:text="${ac.accountnum}">
-		</option>
-	</select><br>
-	<input id="ck" type="text" name="receiver" placeholder="송금 받는 계좌번호를 입력해주세요." required>
-	<button type="button" onclick="check()">예금자 확인</button><br>
-	<input type="text" name="balance" placeholder="금액을 입력해주세요" required>
-	<input type="hidden" name="act" value="송금">
-	<button type="button" onclick="remit()">송금</button>
-</form>
+<a th:href="@{/api/member/accounts(id=${member.id})}">내 계좌 목록</a>
+<a th:href="@{/api/member/deposit(id=${member.id})}">입금</a>
+<a th:href="@{/api/member/remit(id=${member.id})}">이체</a>
 </body>
 </html>

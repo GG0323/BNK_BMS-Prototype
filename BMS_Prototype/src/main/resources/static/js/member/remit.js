@@ -1,19 +1,5 @@
 let depositors = true;
 
-function deposit(){
-	const fm = document.querySelector('#depo');
-	fetch('/api/2/log', {method:'post', body: new FormData(fm)})
-	.then(data => data.json())
-	.then(data => {
-		if(data) {
-			alert('입금되었습니다.');
-			location.reload();
-		}
-		else alert('잠시 후 다시 시도해주세요.');
-	})
-	.catch(e => alert(e));
-}
-
 function remit(){
 	if(depositors){
 		alert("예금자 확인을 해주세요");
@@ -25,7 +11,7 @@ function remit(){
 		.then(data => {
 			if(data){
 				alert('입금되었습니다.');
-				location.reload();
+				location.href="/api/member/mypage";
 			}
 			else alert('잔액이 부족합니다.');
 		})

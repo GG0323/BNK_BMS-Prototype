@@ -13,6 +13,7 @@ import com.example.demo.service.AccountService;
 import com.example.demo.service.MemberService;
 import com.example.demo.service.NoticeService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -45,6 +46,7 @@ public class MainController {
 	}
 	
 	@PostMapping("/member")
+	@Transactional
 	public @ResponseBody boolean member(RequestMemberDto dto) {
 		Member entity = mservice.save(dto);
 		if(entity == null) return false;

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/member/deposit.js" defer></script>
+</head>
+<body>
+<h1>Member Page</h1><hr>
+
+<h2>입금</h2>
+<form id='depo'>
+	<select name='receiver'>
+		<option th:each="ac : ${account}"
+		th:value="${ac.accountnum}"
+		th:text="${ac.accountnum}">
+		</option>
+	</select>
+	<input type="text" name="balance" placeholder="금액을 입력해주세요." required>
+	<input type="hidden" name="act" value="입금">
+	<button type="button" onclick="deposit()">입금</button>
+</form>
+
+</body>
+</html>

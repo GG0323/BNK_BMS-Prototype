@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.ResponseMemberDto;
 import com.example.demo.service.AccountService;
@@ -24,9 +25,27 @@ public class MemberController {
 	
 	@GetMapping("/mypage")
 	public String mypage(Model model, HttpServletRequest request) {
-		ResponseMemberDto dto = mservice.getMember(request);
-		model.addAttribute("member", dto);
-		model.addAttribute("account", aservice.findMemberAccount(dto.getId()));
+		model.addAttribute("member", mservice.getMember(request));
 		return "member/mypage";
+	}
+	
+	@GetMapping("/accounts")
+	public String accounts(@RequestParam("id")Long id, Model model) {
+		ResponseMemberDto dto = mservice.getMember(id);
+		model.addAttribute("name", dto.getName());
+		model.addAttribute("account", aservice.findMemberAccount(dto.getId()));
+		return "member/accounts";
+	}
+	
+	@GetMapping("/deposit")
+	public String deposit(@RequestParam("id")Long id, Model model) {
+		model.addAttribute("account", aservice.findMemberAccount(id));
+		return "member/deposit";
+	}
+	
+	@GetMapping("/remit")
+	public String remit(@RequestParam("id")Long id, Model model) {
+		model.addAttribute("account", aservice.findMemberAccount(id));
+		return "member/remit";
 	}
 }

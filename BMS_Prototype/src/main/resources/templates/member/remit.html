@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/member/remit.js" defer></script>
+</head>
+<body>
+<h1>Member Page</h1><hr>
+<h2>송금</h2>
+<form id="remit">
+	<select name='sender'>
+		<option th:each="ac : ${account}"
+		th:value="${ac.accountnum}"
+		th:text="${ac.accountnum}">
+		</option>
+	</select><br>
+	<input id="ck" type="text" name="receiver" placeholder="송금 받는 계좌번호를 입력해주세요." required>
+	<button type="button" onclick="check()">예금자 확인</button><br>
+	<input type="text" name="balance" placeholder="금액을 입력해주세요" required>
+	<input type="hidden" name="act" value="송금">
+	<button type="button" onclick="remit()">송금</button>
+</form>
+</body>
+</html>

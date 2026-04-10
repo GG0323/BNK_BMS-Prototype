@@ -13,7 +13,6 @@ import jakarta.transaction.Transactional;
 
 @Transactional
 public interface AccountRepository extends JpaRepository<Account, Long>{
-	@Modifying
 	@Query(value="select accountno_seq.nextval from dual", nativeQuery = true)
 	Long getAccountNo();
 	
