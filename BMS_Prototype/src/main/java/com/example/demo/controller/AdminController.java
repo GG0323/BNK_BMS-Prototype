@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.repository.AccountRepository;
 import com.example.demo.service.AccountService;
 import com.example.demo.service.MemberService;
 

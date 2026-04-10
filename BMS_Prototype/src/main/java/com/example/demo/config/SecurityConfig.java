@@ -44,6 +44,7 @@ public class SecurityConfig {
 		 * .requestMatchers("/api/member/**").hasRole(Role.MEMBER.name())
 		 * .requestMatchers("/api/admin/**").hasRole(Role.ADMIN.name()) );
 		 */
+
 		
 		return http.build();
 	}

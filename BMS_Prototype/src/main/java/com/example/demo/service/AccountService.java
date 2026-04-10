@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Account;
@@ -9,6 +8,7 @@ import com.example.demo.entity.Member;
 import com.example.demo.repository.AccountRepository;
 
 import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -23,7 +23,6 @@ public class AccountService {
 		String account = pd.substring(0, 3) + "-" + pd.substring(3, 7) + "-" + pd.substring(7, 13);
 		return repo.save(Account.builder().member(entity).accountnum(account).build()) != null;
 	}
-	
 	// 회원 기준으로 계좌 전체 조회
 	public List<Account> findMemberAccount(Long id){
 		return repo.findByMemberId(id);
@@ -42,7 +41,4 @@ public class AccountService {
 		System.out.println("결과: " +  repo.findById(id));
 		return true;
 	}
-	
-	
-
 }

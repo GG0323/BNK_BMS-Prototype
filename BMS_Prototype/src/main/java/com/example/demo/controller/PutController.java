@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/1")
-public class GetController {
+@RequestMapping("/api/3")
+public class PutController {
 
 }

@@ -26,6 +26,7 @@ public class JwtUtil {
 		this.expiration = expiration;
 	}
 	
+
 	public String accessToken(String username, String role) {
 		return Jwts.builder()
 				.subject(username)
