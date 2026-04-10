@@ -33,17 +33,17 @@ public class SecurityConfig {
 			.failureHandler(new JwtLoginFailHandler())
 		);
 		
-		http.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());
+		//http.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());
 		
-		/*
-		 * http.authorizeHttpRequests(request ->
-		 * request.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).
-		 * permitAll() .requestMatchers("/", "/loginForm", "/signup",
-		 * "/member").permitAll()
-		 * .requestMatchers("/api/**").hasAnyRole(Role.MEMBER.name(), Role.ADMIN.name())
-		 * .requestMatchers("/api/member/**").hasRole(Role.MEMBER.name())
-		 * .requestMatchers("/api/admin/**").hasRole(Role.ADMIN.name()) );
-		 */
+		
+		  http.authorizeHttpRequests(request ->
+		  request.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).
+		  permitAll() .requestMatchers("/", "/loginForm", "/signup",
+		  "/member").permitAll()
+		  .requestMatchers("/api/**").hasAnyRole(Role.MEMBER.name(), Role.ADMIN.name())
+		  .requestMatchers("/api/member/**").hasRole(Role.MEMBER.name())
+		  .requestMatchers("/api/admin/**").hasRole(Role.ADMIN.name()) );
+		 
 
 		
 		return http.build();

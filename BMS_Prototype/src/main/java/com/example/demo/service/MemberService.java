@@ -10,7 +10,10 @@ import com.example.demo.dto.ResponseMemberDto;
 import com.example.demo.entity.Member;
 import com.example.demo.pojo.Role;
 import com.example.demo.repository.MemberRepository;
+import com.example.demo.utils.JwtUtil;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -19,6 +22,7 @@ public class MemberService {
 	
 	private final MemberRepository repo;
 	private final BCryptPasswordEncoder pwEncoder;
+	private final JwtUtil util;
 	
 	// 회원 가입 및 수정(성공하면 true, 실패하면 false)
 	public Member save(RequestMemberDto dto) {
@@ -31,12 +35,22 @@ public class MemberService {
 		return repo.findAll().stream().map(ResponseMemberDto::entityToDto).filter(dto -> dto.getRole().equals(Role.MEMBER)).toList();
 	}
 	
-	// 회원 1명 조회(회원 본인)
+	// 회원 1명 username으로 조회
 	public ResponseMemberDto getMember(String username) {
 		Member entity = repo.findByUsername(username);
 		return entity == null ? null : ResponseMemberDto.entityToDto(entity);
 	}
 	
+	public ResponseMemberDto getMember(HttpServletRequest request) {
+		String token = null;
+		for(Cookie ck : request.getCookies())
+			if(ck.getName().equals("accessToken")) 
+				token = ck.getValue();
+
+		return token == null? null : getMember(util.getUsername(token));
+	}
+	
+	// 회원 1명 id로 조회
 	public ResponseMemberDto getMember(Long id) {
 		Member entity = repo.findById(id).orElse(null);
 		return entity == null ? null : ResponseMemberDto.entityToDto(entity);

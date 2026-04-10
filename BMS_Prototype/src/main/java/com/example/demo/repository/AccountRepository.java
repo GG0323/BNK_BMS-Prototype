@@ -9,12 +9,14 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.demo.entity.Account;
 
+import jakarta.transaction.Transactional;
+
+@Transactional
 public interface AccountRepository extends JpaRepository<Account, Long>{
 	@Modifying
 	@Query(value="select accountno_seq.nextval from dual", nativeQuery = true)
 	Long getAccountNo();
 	
-	@Modifying
 	@Query("select a from Account a where a.member.id = :id")
 	List<Account> findByMemberId(@Param("id")Long id);
 	

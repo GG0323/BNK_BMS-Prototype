@@ -42,13 +42,9 @@ public class TransactionDetails {
 	private LocalDateTime when;
 	
 	@Builder
-	public TransactionDetails(String sender, String receiver, String act, Long balance) {
-		this.sender = new Account();
-		this.sender.setAccountnum(sender);
-		
-		this.receiver = new Account();
-		this.receiver.setAccountnum(receiver);
-		
+	public TransactionDetails(Account sender, Account receiver, String act, Long balance) {
+		this.sender = sender;
+		this.receiver = receiver;
 		this.balance = balance;
 	}
 }
