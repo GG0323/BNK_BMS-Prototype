@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/index.js" defer></script>
+</head>
+<body>
+<h1>Index Page</h1><hr>
+<button onclick="location.href='/loginForm'">Login</button>
+<button onclick="location.href='/signup'">Signup</button>
+<table>
+	<thead>
+		<tr>
+			<th>no</th>
+			<th>title</th>
+			<th>date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="n : ${notice}">
+			<td th:text="${n.no}"></td>
+			<td th:text="${n.title}"></td>
+			<td th:text="${#temporals.format(n.ndate, 'yyyy-MM-dd')}"></td>
+		</tr>
+	</tbody>
+</table>
+
+</body>
+</html>
